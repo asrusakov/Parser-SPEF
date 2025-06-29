@@ -3281,7 +3281,7 @@ DOCTEST_MAKE_STD_HEADERS_CLEAN_FROM_WARNINGS_ON_WALL_BEGIN
 #include <set>
 #include <exception>
 #include <stdexcept>
-#include <csignal>
+#include <signal.h>
 #include <cfloat>
 #include <cctype>
 #if !DOCTEST_MSVC
@@ -4403,7 +4403,9 @@ namespace detail
         static bool             isSet;
         static struct sigaction oldSigActions[DOCTEST_COUNTOF(signalDefs)];
         static stack_t          oldSigStack;
-        static char             altStackMem[4 * SIGSTKSZ];
+//asr workaround. SIGSTKSZ is runtime now        
+#define SIGSTKSZ_SIZE 256*1024        
+        static char             altStackMem[4 * SIGSTKSZ_SIZE];        
 
         static void handleSignal(int sig) {
             std::string name = "<unknown signal>";

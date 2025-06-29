@@ -7,7 +7,7 @@ int main(int argc, char* argv[]){
     std::exit(EXIT_FAILURE);
   }
 
-  if(not std::experimental::filesystem::exists(argv[1])){
+  if(not std::filesystem::exists(argv[1])){
     std::cerr << "can't find " <<  argv[1] << '\n';
     std::exit(EXIT_FAILURE);
   }

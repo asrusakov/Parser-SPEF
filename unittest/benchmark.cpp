@@ -5,7 +5,7 @@
 
 TEST_CASE("Benchmark"){
 
-  for(const auto& path: std::experimental::filesystem::directory_iterator("../benchmark/")){
+  for(const auto& path: std::filesystem::directory_iterator("../benchmark/")){
     std::cout << path << '\n';
     spef::Spef parser;
     REQUIRE(parser.read(path));
